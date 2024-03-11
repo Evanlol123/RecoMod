@@ -368,26 +368,13 @@ EOF
 }
 
 edit_gbb(){
-  pick "Choose GBB flag configuration to set" \
-      "Short boot delay" \
-      "Force devmode on" \
-      "Force devmode on + short boot delay" \
-      "Ignore FWMP" \
-      "Factory default (reset)"
-  case "$CHOICE" in
-    1) FLAGS=0x1 ;;
-    2) FLAGS=0x80b8 ;;
-    3) FLAGS=0x80b9 ;;
-    4) FLAGS=0x80b0 ;;
-    5) FLAGS=0x0 ;;
-  esac
   asusb flashrom --wp-disable > /dev/null 2>&1
   if [ $? -ne 0 ]; then
     message "Failed to disable software write-protect, make sure hardware WP is disabled?"
   else
     clear
-    asusb /usr/share/vboot/bin/set_gbb_flags.sh "$FLAGS"
-    message "Set GBB flags sucessfully"
+    asusb /usr/share/vboot/bin/set_gbb_flags.sh 0x80b1
+    message "Set GBB flags to 0x80b1 sucessfully"
   fi
 }
 
