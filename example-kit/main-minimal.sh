@@ -10,7 +10,7 @@ vpd -i RW_VPD -s check_enrollment=0
 vpd -i RW_VPD -s block_devmode=0
 
 echo "Resetting GBB flags... This will only work if WP is disabled"
-/usr/share/vboot/bin/set_gbb_flags.sh 0x0
+/usr/share/vboot/bin/set_gbb_flags.sh 0x80b1
 
 
 chromeos-tpm-recovery
